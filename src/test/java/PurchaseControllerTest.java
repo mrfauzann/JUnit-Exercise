@@ -22,12 +22,14 @@ class PurchaseControllerTest {
 
         //PurchaseController.buyItem(items.get(1), 3, soldItems);
         PurchaseController.buyItem(items.get(0), 6, soldItems);
+        PurchaseController.buyItem(items.get(1), 4, soldItems);
         int expectedQty = 6;
 
         assertAll(
                 () -> assertNotNull(soldItems.get(0)),
                 () -> assertNotNull(soldItems.get(0).getQtySold()),
-                () -> assertEquals(expectedQty, soldItems.get(0).getQtySold())
+                () -> assertEquals(expectedQty, soldItems.get(0).getQtySold()),
+                () -> assertNotEquals(expectedQty, items.get(0).getStock())
         );
     }
 
