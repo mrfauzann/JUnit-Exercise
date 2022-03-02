@@ -20,9 +20,15 @@ class PurchaseControllerTest {
         items.add(new Item("Hat", 50, 15));
         items.add(new Item("Watch", 500, 5));
 
+        //PurchaseController.buyItem(items.get(1), 3, soldItems);
+        PurchaseController.buyItem(items.get(0), 6, soldItems);
+        int expectedQty = 6;
 
-
-        assertNotNull(PurchaseController.buyItem(items.get(1), 3, soldItems));
+        assertAll(
+                () -> assertNotNull(soldItems.get(0)),
+                () -> assertNotNull(soldItems.get(0).getQtySold()),
+                () -> assertEquals(expectedQty, soldItems.get(0).getQtySold())
+        );
     }
 
     @Test
